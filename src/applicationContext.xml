@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- 新浪云数据库配置 -->
+	<!-- 
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_yota?autoReconnect=true&amp;characterEncoding=UTF-8&amp;useUnicode=true"></property>
+		<property name="username" value="nk2ynx5yj3"></property>
+		<property name="password" value="kymzxm0mi2jwlykhkkxih3xikywjl1054325i3yj"></property>
+		
+		<property name="maxWait" value="1000" />
+        <property name="initialSize" value="5" />
+        <property name="maxActive" value="20" />
+        <property name="maxIdle" value="5" />
+        <property name="testWhileIdle" value="true" />
+        <property name="timeBetweenEvictionRunsMillis" value="15000" />
+        <property name="numTestsPerEvictionRun" value="20" />
+        <property name="validationQuery" value="SELECT 1 FROM DUAL" />
+        <property name="removeAbandoned" value="true" />
+        <property name="removeAbandonedTimeout" value="180" />
+	</bean>
+	-->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/yota"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="12345"></property>
+	</bean>
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>org/ike/yota/entity/Photo.hbm.xml</value>
+				<value>org/ike/yota/entity/Footprint.hbm.xml</value>
+				<value>org/ike/yota/entity/User.hbm.xml</value>
+				<value>
+					org/ike/yota/entity/ActivitiesType.hbm.xml
+				</value>
+				<value>org/ike/yota/entity/Attend.hbm.xml</value>
+				<value>org/ike/yota/entity/Activities.hbm.xml</value></list>
+		</property></bean>
+	<bean id="PhotoDAO" class="org.ike.yota.entity.PhotoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="FootprintDAO" class="org.ike.yota.entity.FootprintDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="UserDAO" class="org.ike.yota.entity.UserDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ActivitiesTypeDAO"
+		class="org.ike.yota.entity.ActivitiesTypeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="AttendDAO" class="org.ike.yota.entity.AttendDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ActivitiesDAO"
+		class="org.ike.yota.entity.ActivitiesDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean></beans>

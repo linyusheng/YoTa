@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+  <add-on id="spring.web"/>
+  <container path="com.genuitec.runtime.library/com.genuitec.spring_3.0">
+    <jar-attrs id="data/3.0/lib/core/org.springframework.core-3.0.5.RELEASE.jar">
+      <attribute name="javadoc_location" value="http://static.springsource.org/spring/docs/3.0.x/api/"/>
+      <attribute name="source-path-root"/>
+      <attribute name="source-path" value="\YoTa\WebRoot\WEB-INF\lib"/>
+    </jar-attrs>
+  </container>
+</project>
